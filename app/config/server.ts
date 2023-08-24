@@ -45,7 +45,7 @@ export const getServerSideConfig = () => {
   apiKeyIndex++; 
 
   return {
-    apiKey: currentApiKey,,
+    apiKey: currentApiKey,
     code: process.env.CODE,
     codes: ACCESS_CODES,
     needCode: ACCESS_CODES.size > 0,
