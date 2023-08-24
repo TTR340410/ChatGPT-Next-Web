@@ -17,9 +17,6 @@ declare global {
   }
 }
 
-const API_KEYS = (process.env.OPENAI_API_KEYS?.split(",") ?? []).map(key => key.trim());
-let apiKeyIndex = 0; 
-
 const ACCESS_CODES = (function getAccessCodes(): Set<string> {
   const code = process.env.CODE;
 
@@ -39,13 +36,9 @@ export const getServerSideConfig = () => {
       "[Server Config] you are importing a nodejs-only module outside of nodejs",
     );
   }
-  
-
-  const currentApiKey = API_KEYS[apiKeyIndex % API_KEYS.length];
-  apiKeyIndex++; 
 
   return {
-    apiKey: currentApiKey,
+    apiKey: process.env.OPENAI_API_KEY,
     code: process.env.CODE,
     codes: ACCESS_CODES,
     needCode: ACCESS_CODES.size > 0,
